@@ -868,7 +868,7 @@ export default function RentalAnalysisPage() {
           </div>
           <nav className="flex items-center gap-4">
             <Badge variant="outline" className="text-xs hidden md:inline-flex">
-              {"Felix - David - Krystian - Kilian"}
+              {"Felix - David - Peter - Krystian - Kilian"}
             </Badge>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
