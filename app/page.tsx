@@ -11,6 +11,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
+import { Input } from "@/components/ui/input"
 import {
   BarChart3,
   TrendingUp,
@@ -26,6 +27,8 @@ import {
   Sun,
   Moon,
   ChevronDown,
+  X,
+  Pencil,
 } from "lucide-react"
 import {
   DropdownMenu,
@@ -245,8 +248,11 @@ const barChartOptions: ChartOptions<"bar"> = {
 export default function RentalAnalysisPage() {
   const [selectedRegion, setSelectedRegion] = useState("München (Ø)")
   const [apartmentSize, setApartmentSize] = useState([70])
-  const [selectedPersonType, setSelectedPersonType] = useState("familie")
+const [selectedPersonType, setSelectedPersonType] = useState("familie")
   const [theme, setTheme] = useState<"light" | "dark">("light")
+  const [customIncome, setCustomIncome] = useState(3000)
+  const [showCustomIncomeModal, setShowCustomIncomeModal] = useState(false)
+  const [tempCustomIncome, setTempCustomIncome] = useState("")
 
   useEffect(() => {
     if (theme === "dark") {
@@ -256,14 +262,31 @@ export default function RentalAnalysisPage() {
     }
   }, [theme])
 
-  const incomeByType: Record<string, number> = {
+const incomeByType: Record<string, number> = {
     familie: 5200,      // Familieneinkommen 2025/2026
     student: 1050,      // BAföG Höchstsatz + Nebenjob 2025
     azubi: 1180,        // Durchschnittliche Ausbildungsvergütung 2025
     single: 3100,       // Durchschnittliches Nettoeinkommen Single 2025
+    custom: customIncome, // Benutzerdefiniert
   }
 
   const currentIncome = incomeByType[selectedPersonType]
+
+  const handlePersonTypeChange = (value: string) => {
+    if (value === "custom") {
+      setTempCustomIncome(customIncome.toString())
+      setShowCustomIncomeModal(true)
+    }
+    setSelectedPersonType(value)
+  }
+
+  const handleCustomIncomeSubmit = () => {
+    const income = parseInt(tempCustomIncome)
+    if (!isNaN(income) && income > 0) {
+      setCustomIncome(income)
+      setShowCustomIncomeModal(false)
+    }
+  }
   
 const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
   const selectedStadtteilData = munchenStadtteile.find(d => d.stadtteil === selectedRegion)
@@ -1327,9 +1350,9 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
                     </div>
                     <Slider value={apartmentSize} onValueChange={setApartmentSize} min={20} max={120} step={5} />
                   </div>
-                  <div className="space-y-2">
+<div className="space-y-2">
                     <label className="text-sm font-medium">Personentyp</label>
-                    <Select value={selectedPersonType} onValueChange={setSelectedPersonType}>
+                    <Select value={selectedPersonType} onValueChange={handlePersonTypeChange}>
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -1338,11 +1361,32 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
                         <SelectItem value="single">Single (Berufstätig)</SelectItem>
                         <SelectItem value="student">Student</SelectItem>
                         <SelectItem value="azubi">Auszubildender</SelectItem>
+                        <SelectItem value="custom">
+                          <span className="flex items-center gap-2">
+                            <Pencil className="h-3 w-3" />
+                            Benutzerdefiniert
+                          </span>
+                        </SelectItem>
                       </SelectContent>
                     </Select>
-                    <p className="text-xs text-muted-foreground">
-                      Durchschnittliches Einkommen: {currentIncome.toLocaleString()}€/Monat
-                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-xs text-muted-foreground">
+                        {selectedPersonType === "custom" ? "Eigenes" : "Durchschnittliches"} Einkommen: {currentIncome.toLocaleString()}€/Monat
+                      </p>
+                      {selectedPersonType === "custom" && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setTempCustomIncome(customIncome.toString())
+                            setShowCustomIncomeModal(true)
+                          }}
+                          className="text-xs text-primary hover:underline flex items-center gap-1"
+                        >
+                          <Pencil className="h-3 w-3" />
+                          Ändern
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -1574,7 +1618,7 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
           </div>
         </section>
 
-        {/* lebenshaltungskosten felix */}
+{/* lebenshaltungskosten felix */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
@@ -1597,6 +1641,28 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
           </div>
         </section>
 
+        {/* Mietspiegel Heatmap */}
+        <section className="border-b">
+          <div className="container mx-auto px-4 py-16">
+            <div className="text-center mb-12">
+              <h2 className="text-2xl md:text-3xl font-bold mb-3">Mietspiegel nach Stadtbezirk</h2>
+              <p className="text-muted-foreground">
+                Interaktive Visualisierung der Mietpreise nach Münchner Stadtteilen (€/m²)
+              </p>
+            </div>
+            <Card className="overflow-hidden">
+              <CardContent className="p-0">
+                <iframe
+                  src="/muenchen-heatmap.html"
+                  className="w-full border-0"
+                  style={{ height: "1200px" }}
+                  title="München Mietspiegel Heatmap"
+                />
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         {/* Footer geile felix füße */}
         <footer className="py-6">
           <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
@@ -1604,6 +1670,109 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
           </div>
         </footer>
       </main>
+
+      {/* iOS 26 Liquid Glass Modal für benutzerdefiniertes Einkommen */}
+      {showCustomIncomeModal && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          onClick={() => setShowCustomIncomeModal(false)}
+        >
+          {/* Glasmorphism Backdrop */}
+          <div className="absolute inset-0 bg-black/20 backdrop-blur-xl" />
+          
+          {/* Modal Container */}
+          <div 
+            className="relative z-10 w-[90%] max-w-md mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Liquid Glass Card */}
+            <div className="relative overflow-hidden rounded-3xl">
+              {/* Glass Background Layers */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-white/40 to-white/30 dark:from-white/20 dark:via-white/10 dark:to-white/5" />
+              <div className="absolute inset-0 backdrop-blur-2xl" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent dark:from-white/5" />
+              
+              {/* Subtle inner glow */}
+              <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/80 via-transparent to-transparent dark:from-white/10 pointer-events-none" />
+              
+              {/* Border glow effect */}
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-white/50 dark:ring-white/20" />
+              
+              {/* Content */}
+              <div className="relative p-8">
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setShowCustomIncomeModal(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <X className="w-4 h-4 text-black/60 dark:text-white/60" />
+                </button>
+
+                {/* Header */}
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 dark:from-primary/30 dark:to-primary/10 flex items-center justify-center backdrop-blur-sm ring-1 ring-primary/20">
+                    <Euro className="w-8 h-8 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-black/80 dark:text-white/90 mb-2">
+                    Eigenes Einkommen
+                  </h3>
+                  <p className="text-sm text-black/50 dark:text-white/50">
+                    Geben Sie Ihr monatliches Nettoeinkommen ein
+                  </p>
+                </div>
+
+                {/* Input Field */}
+                <div className="relative mb-6">
+                  <div className="relative">
+                    <Input
+                      type="number"
+                      value={tempCustomIncome}
+                      onChange={(e) => setTempCustomIncome(e.target.value)}
+                      placeholder="3000"
+                      className="w-full h-14 text-center text-2xl font-semibold bg-black/5 dark:bg-white/10 border-0 rounded-2xl focus:ring-2 focus:ring-primary/50 placeholder:text-black/30 dark:placeholder:text-white/30"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          handleCustomIncomeSubmit()
+                        }
+                      }}
+                    />
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-lg font-medium text-black/40 dark:text-white/40">
+                      €
+                    </span>
+                  </div>
+                  <p className="text-xs text-center text-black/40 dark:text-white/40 mt-2">
+                    pro Monat (Netto)
+                  </p>
+                </div>
+
+                {/* Quick Select Buttons */}
+                <div className="flex gap-2 mb-6">
+                  {[1500, 2500, 4000, 6000].map((amount) => (
+                    <button
+                      key={amount}
+                      type="button"
+                      onClick={() => setTempCustomIncome(amount.toString())}
+                      className="flex-1 py-2 px-3 rounded-xl text-sm font-medium bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 text-black/60 dark:text-white/60 transition-all duration-200 hover:scale-105"
+                    >
+                      {amount.toLocaleString()}€
+                    </button>
+                  ))}
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="button"
+                  onClick={handleCustomIncomeSubmit}
+                  className="w-full h-14 rounded-2xl bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-primary-foreground font-semibold text-lg shadow-lg shadow-primary/25 transition-all duration-300 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  Übernehmen
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
