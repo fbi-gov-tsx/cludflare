@@ -70,32 +70,58 @@ const rentalData = [
   { region: "Fürstenfeldbruck", preis: 16.20, entfernung: 25, einkommen: 3900, lebenshaltung: 1580 },
 ]
 
+// Münchner Stadtteile - Daten aus mietspiegel_alle.csv (Q3 2025)
 const munchenStadtteile = [
-  { stadtteil: "Altstadt-Lehel", preis: 24.86, rang: 1 },
-  { stadtteil: "Ludwigsvorstadt-Isarvorstadt", preis: 24.14, rang: 2 },
-  { stadtteil: "Au-Haidhausen", preis: 23.57, rang: 3 },
-  { stadtteil: "Maxvorstadt", preis: 23.54, rang: 4 },
-  { stadtteil: "Schwabing-West", preis: 23.51, rang: 5 },
-  { stadtteil: "Neuhausen-Nymphenburg", preis: 22.03, rang: 6 },
-  { stadtteil: "Schwanthalerhöhe", preis: 21.89, rang: 7 },
-  { stadtteil: "Schwabing-Freimann", preis: 21.59, rang: 8 },
-  { stadtteil: "Sendling", preis: 21.05, rang: 9 },
-  { stadtteil: "Bogenhausen", preis: 20.92, rang: 10 },
-  { stadtteil: "Untergiesing-Harlaching", preis: 20.87, rang: 11 },
-  { stadtteil: "Milbertshofen-Am Hart", preis: 20.60, rang: 12 },
-  { stadtteil: "Sendling-Westpark", preis: 20.14, rang: 13 },
-  { stadtteil: "Obergiesing-Fasangarten", preis: 19.88, rang: 14 },
-  { stadtteil: "Moosach", preis: 19.74, rang: 15 },
-  { stadtteil: "Laim", preis: 19.68, rang: 16 },
-  { stadtteil: "Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln", preis: 19.66, rang: 17 },
-  { stadtteil: "Pasing-Obermenzing", preis: 19.64, rang: 18 },
-  { stadtteil: "Berg am Laim", preis: 19.56, rang: 19 },
-  { stadtteil: "Hadern", preis: 19.51, rang: 20 },
-  { stadtteil: "Ramersdorf-Perlach", preis: 19.16, rang: 21 },
-  { stadtteil: "Trudering-Riem", preis: 19.15, rang: 22 },
-  { stadtteil: "Feldmoching-Hasenbergl", preis: 18.92, rang: 23 },
-  { stadtteil: "Allach-Untermenzing", preis: 18.67, rang: 24 },
-  { stadtteil: "Aubing-Lochhausen-Langwied", preis: 17.98, rang: 25 },
+  { stadtteil: "Altstadt-Lehel", preis: 24.86, rang: 1, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Ludwigsvorstadt-Isarvorstadt", preis: 24.14, rang: 2, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Au-Haidhausen", preis: 23.57, rang: 3, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Maxvorstadt", preis: 23.54, rang: 4, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Schwabing-West", preis: 23.51, rang: 5, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Neuhausen-Nymphenburg", preis: 22.03, rang: 6, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Schwanthalerhöhe", preis: 21.89, rang: 7, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Schwabing-Freimann", preis: 21.59, rang: 8, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Sendling", preis: 21.05, rang: 9, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Bogenhausen", preis: 20.92, rang: 10, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Untergiesing-Harlaching", preis: 20.87, rang: 11, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Milbertshofen-Am Hart", preis: 20.60, rang: 12, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Sendling-Westpark", preis: 20.14, rang: 13, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Obergiesing-Fasangarten", preis: 19.88, rang: 14, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Moosach", preis: 19.74, rang: 15, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Laim", preis: 19.68, rang: 16, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Thalkirchen-Obersendling-Forstenried-Fürstenried-Solln", preis: 19.66, rang: 17, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Pasing-Obermenzing", preis: 19.64, rang: 18, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Berg am Laim", preis: 19.56, rang: 19, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Hadern", preis: 19.51, rang: 20, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Ramersdorf-Perlach", preis: 19.16, rang: 21, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Trudering-Riem", preis: 19.15, rang: 22, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Feldmoching-Hasenbergl", preis: 18.92, rang: 23, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Allach-Untermenzing", preis: 18.67, rang: 24, region: "München", quartal: "Q3 2025" },
+  { stadtteil: "Aubing-Lochhausen-Langwied", preis: 17.98, rang: 25, region: "München", quartal: "Q3 2025" },
+]
+
+// Landkreis München Gemeinden - Daten aus mietspiegel_alle.csv (Q3 2025)
+const muenchenKreisGemeinden = [
+  { gemeinde: "Grünwald", preis: 19.92, rang: 1, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Neubiberg", preis: 18.53, rang: 2, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Baierbrunn", preis: 18.40, rang: 3, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Neuried", preis: 18.39, rang: 4, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Ottobrunn", preis: 18.34, rang: 5, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Unterhaching", preis: 18.21, rang: 6, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Garching bei München", preis: 18.11, rang: 7, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Haar", preis: 18.11, rang: 8, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Planegg", preis: 17.87, rang: 9, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Ismaning", preis: 17.86, rang: 10, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Oberhaching", preis: 17.70, rang: 11, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Unterschleißheim", preis: 17.59, rang: 12, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Taufkirchen", preis: 17.54, rang: 13, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Hohenbrunn", preis: 17.53, rang: 14, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Putzbrunn", preis: 17.24, rang: 15, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Feldkirchen", preis: 17.14, rang: 16, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Aschheim", preis: 16.74, rang: 17, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Grasbrunn", preis: 16.74, rang: 18, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Brunnthal", preis: 15.97, rang: 19, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Sauerlach", preis: 15.32, rang: 20, region: "München-Kreis", quartal: "Q3 2025" },
+  { gemeinde: "Aying", preis: 14.20, rang: 21, region: "München-Kreis", quartal: "Q3 2025" },
 ]
 
 const wohnflaecheData = [
@@ -239,9 +265,10 @@ export default function RentalAnalysisPage() {
 
   const currentIncome = incomeByType[selectedPersonType]
   
-  const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
+const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
   const selectedStadtteilData = munchenStadtteile.find(d => d.stadtteil === selectedRegion)
-  const selectedPrice = selectedRegionData?.preis ?? selectedStadtteilData?.preis ?? 20.71
+  const selectedGemeindeData = muenchenKreisGemeinden.find(d => d.gemeinde === selectedRegion)
+  const selectedPrice = selectedRegionData?.preis ?? selectedStadtteilData?.preis ?? selectedGemeindeData?.preis ?? 20.71
   
   const calculatedRent = selectedPrice * apartmentSize[0]
   const rentPercentage = (calculatedRent / currentIncome) * 100
@@ -1005,8 +1032,45 @@ export default function RentalAnalysisPage() {
                     </Card>
                   ))}
                 </div>
+<p className="text-sm text-muted-foreground mt-6 text-center">
+                  Quelle: mietspiegel_alle.csv (Q3 2025) | Durchschnitt München: 20,71 €/m²
+                </p>
+              </CollapsibleContent>
+            </Collapsible>
+
+            {/* Landkreis München Gemeinden */}
+            <Collapsible className="mt-8">
+              <CollapsibleTrigger asChild>
+                <button className="w-full flex items-center justify-between p-6 hover:bg-muted/50 rounded-lg border cursor-pointer transition-colors">
+                  <div className="text-left">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-1">Landkreis München Gemeinden</h2>
+                    <p className="text-muted-foreground text-sm">
+                      Mietpreise in 21 Gemeinden im Münchner Umland - Klicken zum Anzeigen
+                    </p>
+                  </div>
+                  <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-200" />
+                </button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="mt-6 data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
+                  {muenchenKreisGemeinden.map((d) => (
+                    <Card key={d.gemeinde} className={d.rang <= 5 ? "ring-1 ring-primary/50" : ""}>
+                      <CardContent className="pt-4 pb-4">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs text-muted-foreground mb-0.5">#{d.rang}</p>
+                            <p className="text-sm font-medium truncate" title={d.gemeinde}>
+                              {d.gemeinde.length > 25 ? d.gemeinde.substring(0, 22) + "..." : d.gemeinde}
+                            </p>
+                          </div>
+                          <p className="text-lg font-bold whitespace-nowrap">{d.preis.toFixed(2)}€</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
                 <p className="text-sm text-muted-foreground mt-6 text-center">
-                  Quelle: Mietspiegel München 2026 | Durchschnitt München: 20,71 €/m²
+                  Quelle: mietspiegel_alle.csv (Q3 2025) | Durchschnitt Landkreis: 17,42 €/m²
                 </p>
               </CollapsibleContent>
             </Collapsible>
@@ -1245,9 +1309,13 @@ export default function RentalAnalysisPage() {
                         {rentalData.map((d) => (
                           <SelectItem key={d.region} value={d.region}>{d.region} - {d.preis.toFixed(2)}€/m²</SelectItem>
                         ))}
-                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground border-t mt-1 pt-2">München Stadtteile</div>
+<div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground border-t mt-1 pt-2">München Stadtteile</div>
                         {munchenStadtteile.map((d) => (
                           <SelectItem key={d.stadtteil} value={d.stadtteil}>{d.stadtteil} - {d.preis.toFixed(2)}€/m²</SelectItem>
+                        ))}
+                        <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground border-t mt-1 pt-2">Landkreis München</div>
+                        {muenchenKreisGemeinden.map((d) => (
+                          <SelectItem key={d.gemeinde} value={d.gemeinde}>{d.gemeinde} - {d.preis.toFixed(2)}€/m²</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
