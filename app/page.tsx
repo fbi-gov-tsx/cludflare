@@ -128,7 +128,7 @@ const wohnflaecheData = [
 ]
 
 const muenchenGesamtWohnflaeche = 39.0
-
+/* david füße */
 const calculateRegression = () => {
   const n = rentalData.length
   const sumX = rentalData.reduce((acc, d) => acc + d.entfernung, 0)
@@ -1075,7 +1075,7 @@ export default function RentalAnalysisPage() {
                 </Card>
               </TabsContent>
 
-              {/* lineare regression */}
+              {/* lineare age regression */}
               <TabsContent value="regression">
                 <Card>
                   <CardHeader>
@@ -1329,7 +1329,7 @@ export default function RentalAnalysisPage() {
           </div>
         </section>
 
-        {/* interpretation */}
+        {/* interpretation felix */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
@@ -1421,7 +1421,7 @@ export default function RentalAnalysisPage() {
               </Card>
             </div>
 
-            {/* folgen personengruppen abcdefg */}
+            {/* folgen personengruppen felix */}
             <h3 className="text-xl font-bold mb-6 text-center">Folgen für verschiedene Personengruppen</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <Card>
@@ -1506,7 +1506,7 @@ export default function RentalAnalysisPage() {
           </div>
         </section>
 
-        {/* lebenshaltungskosten */}
+        {/* lebenshaltungskosten felix */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-16">
             <div className="text-center mb-12">
@@ -1529,7 +1529,7 @@ export default function RentalAnalysisPage() {
           </div>
         </section>
 
-        {/* Footer */}
+        {/* Footer geile felix füße */}
         <footer className="py-6">
           <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
             <p>Felix Seibel &copy; PP</p>
