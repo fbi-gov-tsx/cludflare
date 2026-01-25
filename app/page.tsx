@@ -1004,41 +1004,50 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
         {/* daten collection felix */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-16">
-            <div className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3">1. Datensammlung</h2>
-              <p className="text-muted-foreground">
-                Erhobene Daten: Lebenshaltungskosten, Mietpreise und durchschnittliches Einkommen
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-              {rentalData.map((d) => (
-                <Card key={d.region} className={d.region === "München (Ø)" ? "ring-2 ring-primary" : ""}>
-                  <CardHeader className="pb-2">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <CardTitle className="text-base">{d.region}</CardTitle>
-                    </div>
-                    {d.region === "München (Ø)" && (
-                      <Badge variant="secondary" className="w-fit text-xs">Referenz</Badge>
-                    )}
-                  </CardHeader>
-                  <CardContent className="space-y-2 text-sm">
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Miete/m²:</span>
-                      <span className="font-medium">{d.preis.toFixed(2)}€</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Einkommen:</span>
-                      <span className="font-medium">{d.einkommen.toLocaleString()}€</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-muted-foreground">Entfernung:</span>
-                      <span className="font-medium">{d.entfernung} km</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <Collapsible defaultOpen>
+              <CollapsibleTrigger asChild>
+                <button className="w-full flex items-center justify-between p-6 hover:bg-muted/50 rounded-lg border cursor-pointer transition-colors mb-6">
+                  <div className="text-left">
+                    <h2 className="text-2xl md:text-3xl font-bold mb-1">1. Datensammlung</h2>
+                    <p className="text-muted-foreground text-sm">
+                      Erhobene Daten: Lebenshaltungskosten, Mietpreise und durchschnittliches Einkommen - Klicken zum Ein-/Ausklappen
+                    </p>
+                  </div>
+                  <ChevronDown className="h-6 w-6 shrink-0 chevron-icon" />
+                </button>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                  {rentalData.map((d) => (
+                    <Card key={d.region} className={d.region === "München (Ø)" ? "ring-2 ring-primary" : ""}>
+                      <CardHeader className="pb-2">
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-primary" />
+                          <CardTitle className="text-base">{d.region}</CardTitle>
+                        </div>
+                        {d.region === "München (Ø)" && (
+                          <Badge variant="secondary" className="w-fit text-xs">Referenz</Badge>
+                        )}
+                      </CardHeader>
+                      <CardContent className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Miete/m²:</span>
+                          <span className="font-medium">{d.preis.toFixed(2)}€</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Einkommen:</span>
+                          <span className="font-medium">{d.einkommen.toLocaleString()}€</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-muted-foreground">Entfernung:</span>
+                          <span className="font-medium">{d.entfernung} km</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
           </div>
         </section>
 
@@ -1054,10 +1063,10 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
                       Durchschnittliche Mietpreise nach 25 Stadtteilen - Klicken zum Anzeigen
                     </p>
                   </div>
-                  <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-200" />
+<ChevronDown className="h-6 w-6 shrink-0 chevron-icon" />
                 </button>
               </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6 data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
+              <CollapsibleContent className="mt-6 overflow-hidden">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
                   {munchenStadtteile.map((d) => (
                     <Card key={d.stadtteil} className={d.rang <= 5 ? "ring-1 ring-primary/50" : ""}>
@@ -1091,10 +1100,10 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
                       Mietpreise in 21 Gemeinden im Münchner Umland - Klicken zum Anzeigen
                     </p>
                   </div>
-                  <ChevronDown className="h-6 w-6 shrink-0 transition-transform duration-200" />
+<ChevronDown className="h-6 w-6 shrink-0 chevron-icon" />
                 </button>
               </CollapsibleTrigger>
-              <CollapsibleContent className="mt-6 data-[state=closed]:animate-collapse-up data-[state=open]:animate-collapse-down">
+              <CollapsibleContent className="mt-6 overflow-hidden">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
                   {muenchenKreisGemeinden.map((d) => (
                     <Card key={d.gemeinde} className={d.rang <= 5 ? "ring-1 ring-primary/50" : ""}>
