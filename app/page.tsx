@@ -1004,7 +1004,7 @@ const selectedRegionData = rentalData.find(d => d.region === selectedRegion)
         {/* daten collection felix */}
         <section className="border-b">
           <div className="container mx-auto px-4 py-16">
-            <Collapsible defaultOpen>
+            <Collapsible>
               <CollapsibleTrigger asChild>
                 <button className="w-full flex items-center justify-between p-6 hover:bg-muted/50 rounded-lg border cursor-pointer transition-colors mb-6">
                   <div className="text-left">
